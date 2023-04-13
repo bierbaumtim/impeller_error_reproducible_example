@@ -74,13 +74,13 @@ class _ImageCard extends StatelessWidget {
             width: double.infinity,
             fit: BoxFit.cover,
           ),
-          const Padding(
-            padding: EdgeInsets.all(8),
+          Padding(
+            padding: const EdgeInsets.all(8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
                   style: TextStyle(
