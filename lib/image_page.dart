@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ImagePage extends StatelessWidget {
   const ImagePage({super.key});
@@ -67,12 +68,35 @@ class _ImageCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Image.network(
-            url,
+          CachedNetworkImage(
+            imageUrl: url,
             height: 200,
-            cacheHeight: 300,
+            memCacheHeight: 300,
+            maxHeightDiskCache: 300,
             width: double.infinity,
             fit: BoxFit.cover,
+            errorWidget: (context, url, dynamic error) => Container(
+              height: 200,
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: const Center(
+                child: Text('Bild konnte nicht geladen werden'),
+              ),
+            ),
+            placeholder: (context, url) => Container(
+              height: 200,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    CircularProgressIndicator(),
+                    Text('Bild wird geladen'),
+                  ],
+                ),
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8),
