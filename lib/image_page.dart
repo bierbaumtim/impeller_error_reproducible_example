@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
 class ImagePage extends StatelessWidget {
   const ImagePage({super.key});
@@ -32,10 +33,15 @@ class ImagePage extends StatelessWidget {
         future: _loadImagePage,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) => _ImageCard(
-                url: snapshot.data!.elementAt(index),
+            return LazyLoadScrollView(
+              child: ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) => _ImageCard(
+                  url: snapshot.data!.elementAt(index),
+                ),
+              ),
+              onEndOfPage: () async => await Future.delayed(
+                const Duration(milliseconds: 1500),
               ),
             );
           }
