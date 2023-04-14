@@ -52,6 +52,7 @@ class ImagePage extends StatelessWidget {
           middle: const Text('Impeller'),
           trailing: CupertinoButton(
             onPressed: onToggleShowPerformanceOverlay,
+            padding: EdgeInsets.zero,
             child: const Icon(CupertinoIcons.graph_square),
           ),
         ),
@@ -168,13 +169,14 @@ class _ImageCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
-                  style: TextStyle(
-                    fontSize: 17.5,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style:
+                      CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                            fontSize: 17.5,
+                            fontWeight: FontWeight.w600,
+                          ),
                   maxLines: 2,
                   textAlign: TextAlign.left,
                   overflow: TextOverflow.ellipsis,
@@ -183,10 +185,11 @@ class _ImageCard extends StatelessWidget {
                   'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, '
                   'sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, '
                   'sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum',
-                  style: TextStyle(
-                    fontSize: 15,
-                    height: 1.2,
-                  ),
+                  style:
+                      CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                            fontSize: 15,
+                            height: 1.2,
+                          ),
                   maxLines: 5,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.justify,
